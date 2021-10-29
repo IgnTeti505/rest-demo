@@ -3,18 +3,17 @@ package com.example.demo.service;
 import com.example.demo.entity.Member;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.service.impl.MemberServiceImpl;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.times;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class MemberServiceTest {
 
@@ -34,13 +33,11 @@ public class MemberServiceTest {
         memberList.add(new Member(1L, "Juan", "Perez", 20));
         memberList.add(new Member(2L, "Alex", "Tellez", 20));
 
-        Mockito.when(repository.findAll()).thenReturn(memberList);
-
+        when(repository.findAll()).thenReturn(memberList);
         List<Member> response = service.getAll();
 
-
-        Assert.assertEquals(2, response.size());
-        Mockito.verify(repository, times(1)).findAll();
+        assertEquals(2, response.size());
+        verify(repository, times(1)).findAll();
     }
 
     @Test
@@ -49,6 +46,6 @@ public class MemberServiceTest {
 
         service.post(member);
 
-        Mockito.verify(repository, times(1)).save(member);
+        verify(repository, times(1)).save(member);
     }
 }

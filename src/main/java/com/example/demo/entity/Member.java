@@ -13,6 +13,12 @@ public class Member implements Serializable {
     public Member() {
     }
 
+    public Member(String name, String lastName, Integer age) {
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
     public Member(Long id, String name, String lastName, Integer age) {
         this.id = id;
         this.name = name;
